@@ -1,0 +1,105 @@
+<Button>:
+    font_size:50
+    background_color: 0.333,0.419,0.184,0.5
+    size_hint: 0.3, 0.5
+
+<MainPage>:
+    name: "main"
+
+    search: search
+
+    FloatLayout:
+
+        Label:
+            text: "Welcome to the \nGeorgia Animal Compendium!"
+            pos_hint: {"x":0.35, "top":0.9}
+            font_size: (root.width**2 + root.height**2) / 13**4
+            size_hint: 0.35, 0.15
+            halign: "center"
+
+        Label:
+            text: "What animal would you \nlike to learn more about: "
+            pos_hint: {"x": 0.35, "top": 0.7}
+            font_size: (root.width**2 + root.height**2) / 13**4
+            size_hint: 0.35, 0.15
+            halign: "center"
+
+        TextInput:
+            id: search
+            font_size: (root.width**2 + root.height**2) / 13**4
+            pos_hint: {"x": 0.3, "top": 0.5}
+            multiline: False
+            size_hint: 0.4, 0.15
+
+        Button:
+            text: "Search"
+            pos_hint: {"x":0.2, "y":0.1}
+            size_hint: 0.6, 0.2
+            background_color: 0.333,0.419,0.184,0.5
+            on_release:
+                root.manager.transition.direction = "left"
+                root.search_btn()
+
+<AnimalPage>:
+    name: "animal"
+    namee: str(root.namee)
+    cass: str(root.cass)
+    conservation_status: str(root.conservation_status)
+    description: str(root.description)
+    danger: str(root.danger)
+    picture: picture
+
+    FloatLayout:
+
+        Image:
+            id: picture
+            source:
+            pos_hint: {"x": 0.0, "top": 1}
+            size_hint: 0.35, 0.45
+            allow_stretch: True
+
+
+        Label:
+            id: n
+            text: str(root.namee)
+            pos_hint: {"x": 0.7, "y": .8}
+            font_size: (root.width**2 + root.height**2) / 15**4
+            size_hint: 0.25, 0.15
+            bold: True
+
+        Label:
+            id: cass
+            text: str(root.cass)
+            pos_hint: {"x": 0.7, "y": .75}
+            font_size: (root.width**2 + root.height**2) / 15**4
+            size_hint: 0.25, 0.15
+
+        Label:
+            id: conservation_status
+            text: "Conservation Status: " + str(conservation_status)
+            pos_hint: {"x": 0.7, "y": .7}
+            font_size: (root.width**2 + root.height**2) / 15**4
+            size_hint: 0.25, 0.15
+
+        Label:
+            id: description
+            text: str(root.description)
+            text_size: self.width, None
+            pos_hint: {"x": 0.3, "top": 0.6}
+            size_hint: 1, None
+            height: self.texture_size[1]
+
+        Label:
+            id: danger
+            text: str(root.danger)
+            pos_hint: {"x": 0.3, "top": .7}
+            font_size: (root.width**2 + root.height**2) / 13**4
+            size_hint: 0.35, 0.15
+
+        Button:
+            text: "Main Page"
+            pos_hint: {"x": 0.6, "top": .3}
+            size_hint: 0.3, 0.2
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "down"
